@@ -1,1 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Custom Theming for NG-ZORRO */
+/* For more information: https://ng.ant.design/docs/customize-theme/en */
+@import "../node_modules/ng-zorro-antd/ng-zorro-antd.css";
