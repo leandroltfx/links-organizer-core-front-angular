@@ -28,7 +28,7 @@
             <nz-space nzDirection="vertical" class="lo-w-100" [nzSize]="12">
                 <div nz-flex nzJustify="space-between" *nzSpaceItem>
                     <a>Esqueci a senha</a>
-                    <a>Cadastre-se</a>
+                    <a (click)="goToUserRegistration()">Cadastre-se</a>
                 </div>
                 <button nz-button nzBlock class="login-form-button login-form-margin" [nzType]="'primary'" *nzSpaceItem>
                     Entrar

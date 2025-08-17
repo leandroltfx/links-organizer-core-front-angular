@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
   public passwordVisible!: boolean;
 
   constructor(
+    private readonly router: Router,
     private readonly formBuilder: FormBuilder,
     private readonly nzIconService: NzIconService
   ) {
@@ -35,6 +37,10 @@ export class LoginComponent implements OnInit {
   }
 
   public login(): void { }
+
+  public goToUserRegistration(): void {
+    this.router.navigate(['/cadastro']);
+  }
 
   private buildForm(): FormGroup {
     return this.formBuilder.group({
