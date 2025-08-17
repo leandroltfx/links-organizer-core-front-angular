@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -30,6 +31,7 @@ export class UserRegistrationComponent implements OnInit {
   private emailPattern: RegExp = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
 
   constructor(
+    private readonly router: Router,
     private readonly formBuilder: FormBuilder,
     private readonly nzIconService: NzIconService
   ) {
@@ -41,6 +43,10 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   public register(): void { }
+
+  public goToLogin(): void {
+    this.router.navigate(['/login']);
+  }
 
   private buildForm(): FormGroup {
     return this.formBuilder.group({
