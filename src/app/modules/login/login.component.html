@@ -1,1 +1,39 @@
-<p>login works!</p>
+<div class="lo-w-30 lo-center lo-mtop-5">
+    <nz-card [nzTitle]="loginCardTitleTemplate">
+        <ng-template #loginCardTitleTemplate>
+            <div class="lo-txt-center">
+                <h2 nz-typography>Links Organizer</h2>
+            </div>
+        </ng-template>
+        <form nz-form [formGroup]="loginForm" (ngSubmit)="login()">
+            <nz-form-item>
+                <nz-form-control>
+                    <nz-input-group nzPrefixIcon="mail">
+                        <input type="email" nz-input formControlName="email" placeholder="E-mail" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <nz-input-group nzPrefixIcon="lock" [nzSuffix]="inputPasswordSuffixTemplate">
+                        <input [type]="passwordVisible ? 'text' : 'password'" nz-input formControlName="password"
+                            placeholder="Senha" />
+                    </nz-input-group>
+                    <ng-template #inputPasswordSuffixTemplate>
+                        <span nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+                            (click)="passwordVisible = !passwordVisible" class="lo-clickable"></span>
+                    </ng-template>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-space nzDirection="vertical" class="lo-w-100" [nzSize]="12">
+                <div nz-flex nzJustify="space-between" *nzSpaceItem>
+                    <a>Esqueci a senha</a>
+                    <a>Cadastre-se</a>
+                </div>
+                <button nz-button nzBlock class="login-form-button login-form-margin" [nzType]="'primary'" *nzSpaceItem>
+                    Entrar
+                </button>
+            </nz-space>
+        </form>
+    </nz-card>
+</div>
