@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { LockOutline, MailOutline } from '@ant-design/icons-angular/icons';
 
@@ -38,8 +38,8 @@ export class LoginComponent implements OnInit {
 
   private buildForm(): FormGroup {
     return this.formBuilder.group({
-      email: '',
-      password: ''
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
   }
 

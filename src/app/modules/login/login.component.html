@@ -7,14 +7,14 @@
         </ng-template>
         <form nz-form [formGroup]="loginForm" (ngSubmit)="login()">
             <nz-form-item>
-                <nz-form-control>
+                <nz-form-control nzErrorTip="Informe o seu e-mail">
                     <nz-input-group nzPrefixIcon="mail">
                         <input type="email" nz-input formControlName="email" placeholder="E-mail" />
                     </nz-input-group>
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
-                <nz-form-control>
+                <nz-form-control nzErrorTip="Informe a sua senha">
                     <nz-input-group nzPrefixIcon="lock" [nzSuffix]="inputPasswordSuffixTemplate">
                         <input [type]="passwordVisible ? 'text' : 'password'" nz-input formControlName="password"
                             placeholder="Senha" />
