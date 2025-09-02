@@ -7,6 +7,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+import { LoginService } from './acl/service/login.service';
+import { LoginProxyService } from './acl/proxy/login-proxy.service';
+import { LoginAdapterService } from './acl/adapter/login-adapter.service';
+
 @Component({
   selector: 'lo-login',
   standalone: true,
@@ -18,6 +22,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
+  ],
+  providers: [
+    LoginService,
+    LoginProxyService,
+    LoginAdapterService,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
