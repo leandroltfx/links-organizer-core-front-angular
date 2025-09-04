@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.buildLoginForm();
   }
 
-  public registerUser(): void { }
+  public login(): void { }
 
   private buildLoginForm(): FormGroup {
     return this.formBuilder.group({
