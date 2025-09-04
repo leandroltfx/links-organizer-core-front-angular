@@ -37,14 +37,25 @@ export class LoginComponent implements OnInit {
   public hidePassword: boolean = true;
 
   constructor(
-    private readonly formBuilder: FormBuilder
+    private readonly formBuilder: FormBuilder,
+    private readonly loginService: LoginService,
   ) { }
 
   public ngOnInit(): void {
     this.loginForm = this.buildLoginForm();
   }
 
-  public login(): void { }
+  public login(): void {
+    this.loginService.login(
+      this.loginForm.controls['email'].value,
+      this.loginForm.controls['password'].value,
+    ).subscribe(
+      {
+        next: () => { },
+        error: () => { },
+      }
+    );
+  }
 
   private buildLoginForm(): FormGroup {
     return this.formBuilder.group({
