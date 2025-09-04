@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { catchError, map, Observable, throwError } from 'rxjs';
 
+import { environment } from '../../../../../environments/environment.development';
 import { LoginRequestContract } from '../model/contracts/request/login-request-contract.model';
 import { LoginResponseContract } from '../model/contracts/response/login-response-contract.model';
 
@@ -17,7 +18,7 @@ export class LoginProxyService {
     loginRequestContract: LoginRequestContract
   ): Observable<LoginResponseContract> {
     return this.httpClient.post<LoginResponseContract>(
-      '',
+      `${environment.mockoon_api_path}/login`,
       loginRequestContract
     ).pipe(
       map(

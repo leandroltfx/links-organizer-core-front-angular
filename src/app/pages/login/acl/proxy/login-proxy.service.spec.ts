@@ -34,7 +34,7 @@ describe('LoginProxyService', () => {
       expect(response).toEqual(loginResponse);
     });
 
-    const req = httpMock.expectOne('');
+    const req = httpMock.expectOne('http://localhost:3000/login');
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(loginRequest);
     req.flush(loginResponse);
@@ -52,7 +52,7 @@ describe('LoginProxyService', () => {
       }
     });
 
-    const req = httpMock.expectOne('');
+    const req = httpMock.expectOne('http://localhost:3000/login');
     req.flush(errorMsg, { status: 401, statusText: 'Unauthorized' });
   });
 });
