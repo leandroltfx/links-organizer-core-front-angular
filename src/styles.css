@@ -51,3 +51,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .lo-mtop-8 { margin-top: 1.8rem; }
 .lo-mtop-9 { margin-top: 1.9rem; }
 .lo-mtop-10 { margin-top: 2.0rem; }
+
+.message-warn { --mdc-snackbar-container-color: #FFF9C4; --mdc-snackbar-supporting-text-color: #F57F17; text-align: center; }
+.message-error { --mdc-snackbar-container-color: #FFCDD2; --mdc-snackbar-supporting-text-color: #B71C1C; text-align: center; }
+.message-success { --mdc-snackbar-container-color: #C8E6C9; --mdc-snackbar-supporting-text-color: #1B5E20; text-align: center; }

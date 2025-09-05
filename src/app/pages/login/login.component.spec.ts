@@ -14,15 +14,18 @@ import { of, throwError } from 'rxjs';
 import { LoginComponent } from './login.component';
 import { LoginService } from './acl/service/login.service';
 import { LoginResponseDto } from './acl/model/dto/login-response-dto.model';
+import { MessageService } from '../../shared/services/message/message.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let loginServiceSpy: jasmine.SpyObj<LoginService>;
+  let messageServiceSpy: jasmine.SpyObj<MessageService>;
 
   beforeEach(async () => {
 
     loginServiceSpy = jasmine.createSpyObj<LoginService>('LoginService', ['login']);
+    messageServiceSpy = jasmine.createSpyObj<MessageService>('MessageService', ['showMessage']);
 
     await TestBed.configureTestingModule({
       imports: [
@@ -39,7 +42,8 @@ describe('LoginComponent', () => {
     }).overrideComponent(LoginComponent, {
       set: {
         providers: [
-          { provide: LoginService, useValue: loginServiceSpy }
+          { provide: LoginService, useValue: loginServiceSpy },
+          { provide: MessageService, useValue: messageServiceSpy },
         ]
       }
     }).compileComponents();
@@ -68,6 +72,7 @@ describe('LoginComponent', () => {
     component.loginForm.setValue({ email: 'admin@email.com', password: 'password123456' });
     component.login();
     expect(loginServiceSpy.login).toHaveBeenCalledWith('admin@email.com', 'password123456');
+    expect(messageServiceSpy.showMessage).toHaveBeenCalledWith('Login realizado com sucesso!', 'success');
   });
 
   it('deve tratar erro na chamada do serviço de login', () => {

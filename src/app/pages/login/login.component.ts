@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { MatCardModule } from '@angular/material/card';
@@ -10,6 +11,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { LoginService } from './acl/service/login.service';
 import { LoginProxyService } from './acl/proxy/login-proxy.service';
 import { LoginAdapterService } from './acl/adapter/login-adapter.service';
+import { LoginResponseDto } from './acl/model/dto/login-response-dto.model';
+import { MessageService } from '../../shared/services/message/message.service';
 
 @Component({
   selector: 'lo-login',
@@ -39,6 +42,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly loginService: LoginService,
+    private readonly messageService: MessageService,
   ) { }
 
   public ngOnInit(): void {
@@ -51,8 +55,8 @@ export class LoginComponent implements OnInit {
       this.loginForm.controls['password'].value,
     ).subscribe(
       {
-        next: () => { },
-        error: () => { },
+        next: (response: LoginResponseDto) => this.messageService.showMessage(response.message, 'success'),
+        error: (error: HttpErrorResponse) => this.messageService.showMessage(error.message, 'error'),
       }
     );
   }
