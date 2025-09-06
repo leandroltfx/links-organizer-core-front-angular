@@ -5,6 +5,7 @@ import { of, throwError } from 'rxjs';
 
 import { LoginService } from './login.service';
 import { LoginProxyService } from '../proxy/login-proxy.service';
+import { LoginErrorDto } from '../model/dto/login-error-dto.model';
 import { LoginAdapterService } from '../adapter/login-adapter.service';
 import { LoginResponseDto } from '../model/dto/login-response-dto.model';
 import { LoginResponseContract } from '../model/contracts/response/login-response-contract.model';
@@ -16,7 +17,7 @@ describe('LoginService', () => {
 
   beforeEach(() => {
     loginProxyServiceSpy = jasmine.createSpyObj('LoginProxyService', ['login']);
-    loginAdapterServiceSpy = jasmine.createSpyObj('LoginAdapterService', ['toRequestContract', 'toDto']);
+    loginAdapterServiceSpy = jasmine.createSpyObj('LoginAdapterService', ['toRequestContract', 'toDto', 'toErrorDto']);
 
     TestBed.configureTestingModule({
       providers: [
@@ -56,15 +57,21 @@ describe('LoginService', () => {
     const email = 'admin@email.com';
     const password = 'password123';
     const requestContract = { email, password };
-    const httpError = new HttpErrorResponse({ error: 'Invalid', status: 401 });
+    const loginErrorDto: LoginErrorDto = { message: 'Ocorreu um erro inesperado.' };
 
     loginAdapterServiceSpy.toRequestContract.and.returnValue(requestContract);
-    loginProxyServiceSpy.login.and.returnValue(throwError(() => httpError));
+    loginProxyServiceSpy.login.and.returnValue(throwError(() => new HttpErrorResponse({
+      error: loginErrorDto,
+      status: 400,
+      statusText: 'Bad Request'
+    })));
+
+    loginAdapterServiceSpy.toErrorDto.and.returnValue(loginErrorDto);
 
     service.login(email, password).subscribe({
       next: () => { },
       error: (err) => {
-        expect(err).toBe(httpError);
+        expect(err.message).toBe('Ocorreu um erro inesperado.');
         done();
       }
     });

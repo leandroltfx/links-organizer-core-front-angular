@@ -27,7 +27,7 @@ export class LoginService {
         (loginResponseContract: LoginResponseContract) => this.loginAdadpterService.toDto(loginResponseContract)
       ),
       catchError(
-        (httpErrorResponse: HttpErrorResponse) => throwError(() => httpErrorResponse)
+        (httpErrorResponse: HttpErrorResponse) => throwError(() => this.loginAdadpterService.toErrorDto(httpErrorResponse))
       )
     );
   }
