@@ -31,7 +31,7 @@ describe('MessageService', () => {
       '',
       jasmine.objectContaining({
         panelClass: 'message-success',
-        duration: 500000000,
+        duration: 5000,
         horizontalPosition: 'center',
         verticalPosition: 'top'
       })
@@ -46,7 +46,7 @@ describe('MessageService', () => {
       '',
       jasmine.objectContaining({
         panelClass: 'message-error',
-        duration: 500000000,
+        duration: 5000,
         horizontalPosition: 'center',
         verticalPosition: 'top'
       })
@@ -61,7 +61,7 @@ describe('MessageService', () => {
       '',
       jasmine.objectContaining({
         panelClass: 'message-warn',
-        duration: 500000000,
+        duration: 5000,
         horizontalPosition: 'center',
         verticalPosition: 'top'
       })
