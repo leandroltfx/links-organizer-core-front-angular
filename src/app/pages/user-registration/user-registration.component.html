@@ -1,1 +1,31 @@
-<p>user-registration works!</p>
+<mat-card class="lo-w-30 lo-center lo-mtop-10">
+    <mat-card-header class="lo-txt-center">
+        <mat-card-title>Cadastre-se</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="lo-mtop-10">
+        <form [formGroup]="userRegistrationForm" (submit)="register()">
+            <mat-form-field appearance="outline" class="lo-w-100">
+                <mat-label>Nome de usuário</mat-label>
+                <input type="text" formControlName="userName" matInput placeholder="Digite o seu nome de usuário">
+                <mat-icon matSuffix>user</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="lo-w-100">
+                <mat-label>E-mail</mat-label>
+                <input type="email" formControlName="email" matInput placeholder="Digite o seu e-mail">
+                <mat-icon matSuffix>mail</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="lo-w-100">
+                <mat-label>Senha</mat-label>
+                <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" matInput
+                    placeholder="Digite a sua senha">
+                <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+                    <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+                </button>
+            </mat-form-field>
+            <div class="lo-flex lo-justify-content-end lo-gap-8 lo-mtop-1">
+                <button mat-flat-button color="default" type="button" (click)="cancel()">Cancelar</button>
+                <button mat-flat-button color="primary" type="submit">Confirmar</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

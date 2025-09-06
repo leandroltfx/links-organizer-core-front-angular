@@ -3,6 +3,22 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.lo-flex { display: flex; }
+.lo-justify-content-end { justify-content: end; }
+.lo-justify-content-start { justify-content: start; }
+.lo-justify-content-center { justify-content: center; }
+
+.lo-gap-4 { gap: 4px; }
+.lo-gap-8 { gap: 8px; }
+.lo-gap-12 { gap: 12px; }
+.lo-gap-16 { gap: 16px; }
+.lo-gap-20 { gap: 20px; }
+.lo-gap-24 { gap: 24px; }
+.lo-gap-28 { gap: 28px; }
+.lo-gap-32 { gap: 32px; }
+.lo-gap-36 { gap: 36px; }
+.lo-gap-40 { gap: 40px; }
+
 .lo-txt-end { text-align: end; }
 .lo-txt-start { text-align: start; }
 .lo-txt-center { text-align: center; }
