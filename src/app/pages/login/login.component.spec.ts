@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -19,29 +20,35 @@ import { MessageService } from '../../shared/services/message/message.service';
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
+
+  let routerSpy: jasmine.SpyObj<Router>;
   let loginServiceSpy: jasmine.SpyObj<LoginService>;
   let messageServiceSpy: jasmine.SpyObj<MessageService>;
 
   beforeEach(async () => {
 
+    routerSpy = jasmine.createSpyObj<Router>('Router', ['navigate']);
     loginServiceSpy = jasmine.createSpyObj<LoginService>('LoginService', ['login']);
     messageServiceSpy = jasmine.createSpyObj<MessageService>('MessageService', ['showMessage']);
 
     await TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule,
         ReactiveFormsModule,
+        HttpClientTestingModule,
         BrowserAnimationsModule,
+
         MatCardModule,
         MatIconModule,
         MatInputModule,
         MatButtonModule,
         MatFormFieldModule,
+
         LoginComponent,
       ]
     }).overrideComponent(LoginComponent, {
       set: {
         providers: [
+          { provide: Router, useValue: routerSpy },
           { provide: LoginService, useValue: loginServiceSpy },
           { provide: MessageService, useValue: messageServiceSpy },
         ]
@@ -80,5 +87,10 @@ describe('LoginComponent', () => {
     component.loginForm.setValue({ email: 'admin@email.com', password: 'password123456' });
     component.login();
     expect(loginServiceSpy.login).toHaveBeenCalledWith('admin@email.com', 'password123456');
+  });
+
+  it('deve chamar a rota de cadastro de usuário', () => {
+    component.goToUserRegistration();
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['/cadastro']);
   });
 });
