@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
@@ -40,6 +41,7 @@ export class LoginComponent implements OnInit {
   public hidePassword: boolean = true;
 
   constructor(
+    private readonly router: Router,
     private readonly formBuilder: FormBuilder,
     private readonly loginService: LoginService,
     private readonly messageService: MessageService,
@@ -59,6 +61,10 @@ export class LoginComponent implements OnInit {
         error: (error: LoginErrorDto) => this.messageService.showMessage(error.message, 'error'),
       }
     );
+  }
+
+  public goToUserRegistration(): void {
+    this.router.navigate(['/cadastro']);
   }
 
   private buildLoginForm(): FormGroup {
