@@ -8,6 +8,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+import { UserRegistrationService } from './acl/service/user-registration.service';
+import { UserRegistrationProxyService } from './acl/proxy/user-registration-proxy.service';
+import { UserRegistrationAdapterService } from './acl/adapter/user-registration-adapter.service';
+
 @Component({
   selector: 'lo-user-registration',
   standalone: true,
@@ -19,6 +23,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
+  ],
+  providers: [
+    UserRegistrationService,
+    UserRegistrationProxyService,
+    UserRegistrationAdapterService,
   ],
   templateUrl: './user-registration.component.html',
   styleUrl: './user-registration.component.css'

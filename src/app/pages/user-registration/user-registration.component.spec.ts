@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,7 +15,12 @@ describe('UserRegistrationComponent', () => {
   let component: UserRegistrationComponent;
   let fixture: ComponentFixture<UserRegistrationComponent>;
 
+  let routerSpy: jasmine.SpyObj<Router>;
+
   beforeEach(async () => {
+
+    routerSpy = jasmine.createSpyObj<Router>('Router', ['navigate']);
+
     await TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
@@ -28,8 +34,13 @@ describe('UserRegistrationComponent', () => {
 
         UserRegistrationComponent,
       ]
-    })
-      .compileComponents();
+    }).overrideComponent(UserRegistrationComponent, {
+      set: {
+        providers: [
+          { provide: Router, useValue: routerSpy },
+        ]
+      }
+    }).compileComponents();
 
     fixture = TestBed.createComponent(UserRegistrationComponent);
     component = fixture.componentInstance;
@@ -38,5 +49,18 @@ describe('UserRegistrationComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('deve inicializar o formulário de login na inicialização do componente de login', () => {
+    component.ngOnInit();
+    expect(component.userRegistrationForm).toBeDefined();
+    expect(component.userRegistrationForm.controls['userName']).toBeDefined();
+    expect(component.userRegistrationForm.controls['email']).toBeDefined();
+    expect(component.userRegistrationForm.controls['password']).toBeDefined();
+  });
+
+  it('deve chamar a rota de login ao cancelar cadastro de usuário', () => {
+    component.cancel();
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['/login']);
   });
 });
