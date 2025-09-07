@@ -8,9 +8,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+import { MessageService } from '../../shared/services/message/message.service';
 import { UserRegistrationService } from './acl/service/user-registration.service';
 import { UserRegistrationProxyService } from './acl/proxy/user-registration-proxy.service';
+import { UserRegistrationErrorDto } from './acl/model/dto/user-registration-error-dto.model';
 import { UserRegistrationAdapterService } from './acl/adapter/user-registration-adapter.service';
+import { UserRegistrationResponseDto } from './acl/model/dto/user-registration-response-dto.model';
 
 @Component({
   selector: 'lo-user-registration',
@@ -49,13 +52,28 @@ export class UserRegistrationComponent implements OnInit {
   constructor(
     private readonly router: Router,
     private readonly formBuilder: FormBuilder,
+    private readonly messageService: MessageService,
+    private readonly userRegistrationService: UserRegistrationService,
   ) { }
 
   public ngOnInit(): void {
     this.userRegistrationForm = this.buildUserRegistrationForm();
   }
 
-  public register(): void { }
+  public registerUser(): void {
+    if (this.userRegistrationForm.valid) {
+      this.userRegistrationService.registerUser(
+        this.userRegistrationForm.controls['userName'].value,
+        this.userRegistrationForm.controls['email'].value,
+        this.userRegistrationForm.controls['password'].value,
+      ).subscribe(
+        {
+          next: (response: UserRegistrationResponseDto) => this.messageService.showMessage(response.message, 'success'),
+          error: (error: UserRegistrationErrorDto) => this.messageService.showMessage(error.message, 'error'),
+        }
+      );
+    }
+  }
 
   public cancel(): void {
     this.router.navigate(['/login']);
