@@ -34,7 +34,7 @@ describe('UserRegistrationProxyService', () => {
       expect(response).toEqual(userRegistrationResponse);
     });
 
-    const req = httpMock.expectOne('http://localhost:3000/user');
+    const req = httpMock.expectOne('http://localhost:8080/user');
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(userRegistrationRequest);
     req.flush(userRegistrationResponse);
@@ -52,7 +52,7 @@ describe('UserRegistrationProxyService', () => {
       }
     });
 
-    const req = httpMock.expectOne('http://localhost:3000/user');
+    const req = httpMock.expectOne('http://localhost:8080/user');
     req.flush(errorMsg, { status: 401, statusText: 'Unauthorized' });
   });
 });
