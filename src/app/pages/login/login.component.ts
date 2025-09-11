@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -52,15 +52,17 @@ export class LoginComponent implements OnInit {
   }
 
   public login(): void {
-    this.loginService.login(
-      this.loginForm.controls['email'].value,
-      this.loginForm.controls['password'].value,
-    ).subscribe(
-      {
-        next: (response: LoginResponseDto) => this.messageService.showMessage(response.message, 'success'),
-        error: (error: LoginErrorDto) => this.messageService.showMessage(error.message, 'error'),
-      }
-    );
+    if (this.loginForm.valid) {
+      this.loginService.login(
+        this.loginForm.controls['email'].value,
+        this.loginForm.controls['password'].value,
+      ).subscribe(
+        {
+          next: (response: LoginResponseDto) => this.messageService.showMessage(response.message, 'success'),
+          error: (error: LoginErrorDto) => this.messageService.showMessage(error.message, 'error'),
+        }
+      );
+    }
   }
 
   public goToUserRegistration(): void {
@@ -69,8 +71,8 @@ export class LoginComponent implements OnInit {
 
   private buildLoginForm(): FormGroup {
     return this.formBuilder.group({
-      email: '',
-      password: ''
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
   }
 
