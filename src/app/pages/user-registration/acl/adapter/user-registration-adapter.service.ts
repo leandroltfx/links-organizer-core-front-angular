@@ -36,7 +36,7 @@ export class UserRegistrationAdapterService {
     httpErrorResponse: HttpErrorResponse
   ): UserRegistrationErrorDto {
     return {
-      message: httpErrorResponse.error.error['message'] ?? 'Ocorreu um erro inesperado, tente novamente.'
+      message: httpErrorResponse?.error?.error?.message ?? 'Ocorreu um erro inesperado, tente novamente.'
     }
   }
 }

@@ -18,7 +18,7 @@ export class LoginProxyService {
     loginRequestContract: LoginRequestContract
   ): Observable<LoginResponseContract> {
     return this.httpClient.post<LoginResponseContract>(
-      `${environment.mockoon_api_path}/login`,
+      `${environment.local_api_path}/login`,
       loginRequestContract
     ).pipe(
       map(

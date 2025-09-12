@@ -9,11 +9,17 @@
                 <mat-label>E-mail</mat-label>
                 <input type="email" formControlName="email" matInput placeholder="Digite o seu e-mail">
                 <mat-icon matSuffix>mail</mat-icon>
+                @if (loginForm.controls['email'].hasError('required')) {
+                <mat-error>Informe o seu e-mail</mat-error>
+                }
             </mat-form-field>
-            <mat-form-field appearance="outline" class="lo-w-100">
+            <mat-form-field appearance="outline" class="lo-w-100 lo-mtop-2">
                 <mat-label>Senha</mat-label>
                 <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" matInput
                     placeholder="Digite a sua senha">
+                @if (loginForm.controls['password'].hasError('required')) {
+                <mat-error>Informe a sua senha</mat-error>
+                }
                 <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
                     <mat-icon>{{hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
                 </button>

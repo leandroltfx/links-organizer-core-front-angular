@@ -18,7 +18,7 @@ export class UserRegistrationProxyService {
     userRegistrationRequestContract: UserRegistrationRequestContract
   ): Observable<UserRegistrationResponseContract> {
     return this.httpClient.post<UserRegistrationResponseContract>(
-      `${environment.mockoon_api_path}/user`,
+      `${environment.local_api_path}/user`,
       userRegistrationRequestContract
     ).pipe(
       map(
