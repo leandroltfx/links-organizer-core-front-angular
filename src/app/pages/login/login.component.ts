@@ -58,7 +58,10 @@ export class LoginComponent implements OnInit {
         this.loginForm.controls['password'].value,
       ).subscribe(
         {
-          next: (response: LoginResponseDto) => this.messageService.showMessage(response.message, 'success'),
+          next: (response: LoginResponseDto) => {
+            this.messageService.showMessage(response.message, 'success');
+            this.router.navigate(['/home']);
+          },
           error: (error: LoginErrorDto) => this.messageService.showMessage(error.message, 'error'),
         }
       );

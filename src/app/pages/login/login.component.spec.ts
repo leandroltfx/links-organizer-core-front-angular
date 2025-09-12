@@ -71,7 +71,7 @@ describe('LoginComponent', () => {
     expect(component.loginForm.controls['password']).toBeDefined();
   });
 
-  it('deve chamar o serviço de login', () => {
+  it('deve chamar o serviço de login e rotear para a home', () => {
 
     const loginResponseDto: LoginResponseDto = { message: 'Login realizado com sucesso!', token: 'token' };
 
@@ -80,6 +80,7 @@ describe('LoginComponent', () => {
     component.login();
     expect(loginServiceSpy.login).toHaveBeenCalledWith('admin@email.com', 'password123456');
     expect(messageServiceSpy.showMessage).toHaveBeenCalledWith('Login realizado com sucesso!', 'success');
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['/home']);
   });
 
   it('deve tratar erro na chamada do serviço de login', () => {
