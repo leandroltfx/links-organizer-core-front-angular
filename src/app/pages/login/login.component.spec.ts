@@ -92,6 +92,6 @@ describe('LoginComponent', () => {
 
   it('deve chamar a rota de cadastro de usuário', () => {
     component.goToUserRegistration();
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['/cadastro']);
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['/register']);
   });
 });

@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
   }
 
   public goToUserRegistration(): void {
-    this.router.navigate(['/cadastro']);
+    this.router.navigate(['/register']);
   }
 
   private buildLoginForm(): FormGroup {
