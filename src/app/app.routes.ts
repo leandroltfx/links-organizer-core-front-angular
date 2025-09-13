@@ -11,7 +11,21 @@ export const routes: Routes = [
     },
     {
         path: 'home',
-        loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
+        redirectTo: 'home/collections'
+    },
+    {
+        path: 'home',
+        loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent),
+        children: [
+            {
+                path: 'collections',
+                loadComponent: () => import('./pages/home/collections/collections.component').then(m => m.CollectionsComponent)
+            },
+            {
+                path: 'links',
+                loadComponent: () => import('./pages/home/links/links.component').then(m => m.LinksComponent)
+            }
+        ]
     },
     {
         path: '**',
