@@ -12,6 +12,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .lo-justify-content-end { justify-content: end; }
 .lo-justify-content-start { justify-content: start; }
 .lo-justify-content-center { justify-content: center; }
+.lo-justify-content-between { justify-content: space-between; }
+
+.lo-align-items-center { align-items: center; }
 
 .lo-gap-4 { gap: 4px; }
 .lo-gap-8 { gap: 8px; }
@@ -51,6 +54,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .lo-w-95 { width: 95%; }
 .lo-w-100 { width: 100%; }
 
+.lo-p-1 { padding: 4px; }
+.lo-p-2 { padding: 8px; }
+.lo-p-3 { padding: 12px; }
+.lo-p-4 { padding: 16px; }
+.lo-p-5 { padding: 20px; }
+.lo-p-6 { padding: 24px; }
+.lo-p-7 { padding: 28px; }
+.lo-p-8 { padding: 32px; }
+.lo-p-9 { padding: 36px; }
+.lo-p-10 { padding: 40px; }
+
 .lo-ptop-1 { padding-top: 4px; }
 .lo-ptop-2 { padding-top: 8px; }
 .lo-ptop-3 { padding-top: 12px; }
@@ -61,6 +75,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .lo-ptop-8 { padding-top: 32px; }
 .lo-ptop-9 { padding-top: 36px; }
 .lo-ptop-10 { padding-top: 40px; }
+
+.lo-m-0 { margin: 0 !important; }
 
 .lo-mtop-1 { margin-top: 4px; }
 .lo-mtop-2 { margin-top: 8px; }
