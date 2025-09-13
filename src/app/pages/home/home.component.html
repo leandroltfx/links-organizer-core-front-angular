@@ -7,3 +7,11 @@
         <mat-icon>person</mat-icon>
     </button>
 </header>
+<main>
+    <div class="lo-w-50 lo-center lo-mtop-4">
+        <mat-button-toggle-group hideSingleSelectionIndicator="true" class="lo-w-100" (change)="changeView($event)">
+            <mat-button-toggle value="collections" class="lo-w-100" checked="true">Coleções</mat-button-toggle>
+            <mat-button-toggle value="links" class="lo-w-100">Links</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+</main>

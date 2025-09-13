@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { HomeComponent } from './home.component';
 
@@ -14,6 +15,7 @@ describe('HomeComponent', () => {
       imports: [
         MatIconModule,
         MatButtonModule,
+        MatButtonToggleModule,
 
         HomeComponent,
       ]
