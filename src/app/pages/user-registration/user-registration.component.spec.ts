@@ -75,7 +75,7 @@ describe('UserRegistrationComponent', () => {
     expect(routerSpy.navigate).toHaveBeenCalledWith(['/login']);
   });
 
-  it('deve chamar o serviço de cadastro de usuário', () => {
+  it('deve chamar o serviço de cadastro de usuário, mostrar mensagem de sucesso e rotear para a home', () => {
 
     const userRegistrationResponseDto: UserRegistrationResponseDto = { message: 'Cadastro realizado com sucesso!', expires_in: 123, access_token: 'abcd' };
 
@@ -84,6 +84,7 @@ describe('UserRegistrationComponent', () => {
     component.registerUser();
     expect(userRegistrationServiceSpy.registerUser).toHaveBeenCalledWith('userName', 'admin@email.com', 'password123456');
     expect(messageServiceSpy.showMessage).toHaveBeenCalledWith('Cadastro realizado com sucesso!', 'success');
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['/home/collections']);
   });
 
   it('deve tratar erro na chamada do serviço de cadastro de usuário', () => {

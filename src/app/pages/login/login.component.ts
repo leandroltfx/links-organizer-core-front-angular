@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit {
         {
           next: (response: LoginResponseDto) => {
             this.messageService.showMessage(response.message, 'success');
+            this.router.navigate(['/home/collections']);
           },
           error: (error: LoginErrorDto) => this.messageService.showMessage(error.message, 'error'),
         }

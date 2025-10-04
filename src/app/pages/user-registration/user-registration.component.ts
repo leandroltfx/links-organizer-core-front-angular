@@ -70,6 +70,7 @@ export class UserRegistrationComponent implements OnInit {
         {
           next: (response: UserRegistrationResponseDto) => {
             this.messageService.showMessage(response.message, 'success');
+            this.router.navigate(['/home/collections']);
           },
           error: (error: UserRegistrationErrorDto) => this.messageService.showMessage(error.message, 'error'),
         }
