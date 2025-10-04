@@ -34,13 +34,13 @@ describe('UserRegistrationAdapterService', () => {
   });
 
   it('deve converter um HttpErrorResponse em UserRegistrationErrorDto, preservando mensagem vinda do back', () => {
-    const httpErrorResponse: HttpErrorResponse = new HttpErrorResponse({ error: { error: { message: 'Ocorreu um erro inesperado.' } } });
+    const httpErrorResponse: HttpErrorResponse = new HttpErrorResponse({ error: { message: 'Ocorreu um erro inesperado.' } });
     const result = service.toErrorDto(httpErrorResponse);
     expect(result.message).toBe('Ocorreu um erro inesperado.');
   });
 
   it('deve converter um HttpErrorResponse em UserRegistrationErrorDto, colocando mensagem padrão em caso de não existência de mensagem', () => {
-    const httpErrorResponse: HttpErrorResponse = new HttpErrorResponse({ error: { error: {} } });
+    const httpErrorResponse: HttpErrorResponse = new HttpErrorResponse({ error: {} });
     const result = service.toErrorDto(httpErrorResponse);
     expect(result.message).toBe('Ocorreu um erro inesperado, tente novamente.');
   });
