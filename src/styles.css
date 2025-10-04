@@ -1,4 +1,105 @@
 /* You can add global styles to this file, and also import other style files */
 
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.lo-flex { display: flex; }
+.lo-justify-content-end { justify-content: end; }
+.lo-justify-content-start { justify-content: start; }
+.lo-justify-content-center { justify-content: center; }
+.lo-justify-content-between { justify-content: space-between; }
+
+.lo-align-items-center { align-items: center; }
+
+.lo-gap-4 { gap: 4px; }
+.lo-gap-8 { gap: 8px; }
+.lo-gap-12 { gap: 12px; }
+.lo-gap-16 { gap: 16px; }
+.lo-gap-20 { gap: 20px; }
+.lo-gap-24 { gap: 24px; }
+.lo-gap-28 { gap: 28px; }
+.lo-gap-32 { gap: 32px; }
+.lo-gap-36 { gap: 36px; }
+.lo-gap-40 { gap: 40px; }
+
+.lo-txt-end { text-align: end; }
+.lo-txt-start { text-align: start; }
+.lo-txt-center { text-align: center; }
+
+.lo-center { margin: 0 auto; }
+
+.lo-w-5 { width: 5%; }
+.lo-w-10 { width: 10%; }
+.lo-w-15 { width: 15%; }
+.lo-w-20 { width: 20%; }
+.lo-w-25 { width: 25%; }
+.lo-w-30 { width: 30%; }
+.lo-w-35 { width: 35%; }
+.lo-w-40 { width: 40%; }
+.lo-w-45 { width: 45%; }
+.lo-w-50 { width: 50%; }
+.lo-w-55 { width: 55%; }
+.lo-w-60 { width: 60%; }
+.lo-w-65 { width: 65%; }
+.lo-w-70 { width: 70%; }
+.lo-w-75 { width: 75%; }
+.lo-w-80 { width: 80%; }
+.lo-w-85 { width: 85%; }
+.lo-w-90 { width: 90%; }
+.lo-w-95 { width: 95%; }
+.lo-w-100 { width: 100%; }
+
+.lo-p-1 { padding: 4px; }
+.lo-p-2 { padding: 8px; }
+.lo-p-3 { padding: 12px; }
+.lo-p-4 { padding: 16px; }
+.lo-p-5 { padding: 20px; }
+.lo-p-6 { padding: 24px; }
+.lo-p-7 { padding: 28px; }
+.lo-p-8 { padding: 32px; }
+.lo-p-9 { padding: 36px; }
+.lo-p-10 { padding: 40px; }
+
+.lo-ptop-1 { padding-top: 4px; }
+.lo-ptop-2 { padding-top: 8px; }
+.lo-ptop-3 { padding-top: 12px; }
+.lo-ptop-4 { padding-top: 16px; }
+.lo-ptop-5 { padding-top: 20px; }
+.lo-ptop-6 { padding-top: 24px; }
+.lo-ptop-7 { padding-top: 28px; }
+.lo-ptop-8 { padding-top: 32px; }
+.lo-ptop-9 { padding-top: 36px; }
+.lo-ptop-10 { padding-top: 40px; }
+
+.lo-m-0 { margin: 0 !important; }
+
+.lo-mtop-1 { margin-top: 4px; }
+.lo-mtop-2 { margin-top: 8px; }
+.lo-mtop-3 { margin-top: 12px; }
+.lo-mtop-4 { margin-top: 16px; }
+.lo-mtop-5 { margin-top: 20px; }
+.lo-mtop-6 { margin-top: 24px; }
+.lo-mtop-7 { margin-top: 28px; }
+.lo-mtop-8 { margin-top: 32px; }
+.lo-mtop-9 { margin-top: 36px; }
+.lo-mtop-10 { margin-top: 40px; }
+
+.lo-mbottom-1 { margin-bottom: 4px; }
+.lo-mbottom-2 { margin-bottom: 8px; }
+.lo-mbottom-3 { margin-bottom: 12px; }
+.lo-mbottom-4 { margin-bottom: 16px; }
+.lo-mbottom-5 { margin-bottom: 20px; }
+.lo-mbottom-6 { margin-bottom: 24px; }
+.lo-mbottom-7 { margin-bottom: 28px; }
+.lo-mbottom-8 { margin-bottom: 32px; }
+.lo-mbottom-9 { margin-bottom: 36px; }
+.lo-mbottom-10 { margin-bottom: 40px; }
+
+.message-warn { --mdc-snackbar-container-color: #FFF9C4; --mdc-snackbar-supporting-text-color: #F57F17; text-align: center; }
+.message-error { --mdc-snackbar-container-color: #FFCDD2; --mdc-snackbar-supporting-text-color: #B71C1C; text-align: center; }
+.message-success { --mdc-snackbar-container-color: #C8E6C9; --mdc-snackbar-supporting-text-color: #1B5E20; text-align: center; }
