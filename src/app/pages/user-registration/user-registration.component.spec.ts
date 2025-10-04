@@ -70,6 +70,11 @@ describe('UserRegistrationComponent', () => {
     expect(component.userRegistrationForm.controls['password']).toBeDefined();
   });
 
+  it('deve chamar a rota de login ao cancelar cadastro de usuário', () => {
+    component.cancel();
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['/login']);
+  });
+
   it('deve chamar o serviço de cadastro de usuário', () => {
 
     const userRegistrationResponseDto: UserRegistrationResponseDto = { message: 'Cadastro realizado com sucesso!', expires_in: 123, access_token: 'abcd' };

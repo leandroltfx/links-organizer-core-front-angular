@@ -77,6 +77,10 @@ export class UserRegistrationComponent implements OnInit {
     }
   }
 
+  public cancel(): void {
+    this.router.navigate(['/login']);
+  }
+
   private buildUserRegistrationForm(): FormGroup {
     return this.formBuilder.group(
       {
