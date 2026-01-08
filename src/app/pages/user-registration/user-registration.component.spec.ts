@@ -1,11 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { of, throwError } from 'rxjs';
+import { UserGatewayService } from '../../api/endpoints/user/gateway/user-gateway.service';
 import { UserRegistrationComponent } from './user-registration.component';
 
 describe('UserRegistrationComponent', () => {
   let component: UserRegistrationComponent;
   let fixture: ComponentFixture<UserRegistrationComponent>;
+  let userGatewayService: jasmine.SpyObj<UserGatewayService>;
 
   beforeEach(async () => {
     const gatewaySpy = jasmine.createSpyObj('UserGatewayService', ['createUser']);
@@ -16,13 +19,19 @@ describe('UserRegistrationComponent', () => {
         ReactiveFormsModule,
         FormsModule,
         BrowserAnimationsModule,
+      ],
+      providers: [
+        { provide: UserGatewayService, useValue: gatewaySpy }
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(UserRegistrationComponent);
     component = fixture.componentInstance;
+    userGatewayService = TestBed.inject(
+      UserGatewayService
+    ) as jasmine.SpyObj<UserGatewayService>;
 
-    fixture.detectChanges();
+    fixture.detectChanges(); // dispara ngOnInit
   });
 
   it('deve criar o componente', () => {
@@ -97,5 +106,62 @@ describe('UserRegistrationComponent', () => {
       control?.setValue('12345678');
       expect(control?.valid).toBeTrue();
     });
+  });
+
+  describe('registerUser', () => {
+
+    it('não deve chamar o gateway quando o formulário for inválido', () => {
+      component.userRegistrationForm.setValue({
+        userName: '',
+        email: '',
+        password: ''
+      });
+
+      component.registerUser();
+
+      expect(userGatewayService.createUser).not.toHaveBeenCalled();
+    });
+
+    it('deve chamar o gateway quando o formulário for válido', () => {
+      userGatewayService.createUser.and.returnValue(
+        of({ accessToken: 'jwt-token' })
+      );
+
+      component.userRegistrationForm.setValue({
+        userName: 'User123',
+        email: 'teste@email.com',
+        password: '12345678'
+      });
+
+      component.registerUser();
+
+      expect(component.userRegistrationForm.valid).toBeTrue();
+      expect(userGatewayService.createUser).toHaveBeenCalledWith(
+        'User123',
+        'teste@email.com',
+        '12345678'
+      );
+    });
+
+    it('deve tratar o erro quando o gateway retornar erro', () => {
+      const error = new Error('Erro ao registrar usuário');
+
+      spyOn(console, 'log');
+      userGatewayService.createUser.and.returnValue(
+        throwError(() => error)
+      );
+
+      component.userRegistrationForm.setValue({
+        userName: 'User123',
+        email: 'teste@email.com',
+        password: '12345678'
+      });
+
+      component.registerUser();
+
+      expect(userGatewayService.createUser).toHaveBeenCalled();
+      expect(console.log).toHaveBeenCalledWith(error);
+    });
+
   });
 });
