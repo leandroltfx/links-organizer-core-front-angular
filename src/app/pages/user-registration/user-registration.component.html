@@ -1,0 +1,50 @@
+<main class="lo-w-30 lo-center lo-ptop-10">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                <div class="lo-txt-center">
+                    Cadastro de usuário
+                </div>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="userRegistrationForm" class="lo-ptop-3" (submit)="registerUser()">
+                <mat-form-field appearance="outline" class="lo-w-100 lo-ptop-4">
+                    <mat-label>Nome de usuário</mat-label>
+                    <input matInput placeholder="Digite o seu nome de usuário" type="text" formControlName="userName">
+                    <mat-icon matSuffix>person</mat-icon>
+                    @if (userRegistrationForm.controls['userName'].hasError('required') ||
+                    userRegistrationForm.controls['userName'].hasError('pattern')) {
+                    <mat-error>{{ userNameFieldErrorMessage }}</mat-error>
+                    }
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="lo-w-100 lo-ptop-4">
+                    <mat-label>E-mail</mat-label>
+                    <input matInput placeholder="Digite o seu e-mail" type="email" formControlName="email">
+                    <mat-icon matSuffix>mail</mat-icon>
+                    @if (userRegistrationForm.controls['email'].hasError('required') ||
+                    userRegistrationForm.controls['email'].hasError('pattern')) {
+                    <mat-error>{{ emailFieldErrorMessage }}</mat-error>
+                    }
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="lo-w-100 lo-ptop-4">
+                    <mat-label>Senha</mat-label>
+                    <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+                    <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+                        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    @if (userRegistrationForm.controls['password'].hasError('required') ||
+                    userRegistrationForm.controls['password'].hasError('pattern')) {
+                    <mat-error>{{ passwordErrorMessage }}</mat-error>
+                    }
+                </mat-form-field>
+                <section class="lo-ptop-3">
+                    <div class="lo-flex lo-gap-4 lo-jc-end">
+                        <button mat-stroked-button type="button">Cancelar</button>
+                        <button mat-flat-button color="primary" type="submit">Cadastrar</button>
+                    </div>
+                </section>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</main>
