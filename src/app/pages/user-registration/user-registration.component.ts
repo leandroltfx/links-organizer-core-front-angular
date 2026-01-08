@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { UserGatewayService } from '../../core/api/endpoints/user/gateway/user-gateway.service';
+import { MessageService } from '../../core/services/message/message.service';
 
 @Component({
   selector: 'lo-user-registration',
@@ -36,6 +37,7 @@ export class UserRegistrationComponent {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly userGatewayService: UserGatewayService,
+    private readonly messageService: MessageService,
   ) { }
 
   public hidePassword: boolean = true;
@@ -52,8 +54,8 @@ export class UserRegistrationComponent {
         this.userRegistrationForm.controls['password'].value,
       ).subscribe(
         {
-          next: success => console.log(success),
-          error: error => console.log(error),
+          next: () => this.messageService.showMessage('Usuário cadastrado com sucesso!', 'success'),
+          error: () => this.messageService.showMessage('Ocorreu um erro, tente novamente mais tarde.', 'error'),
         }
       );
     }

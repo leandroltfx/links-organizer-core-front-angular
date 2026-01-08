@@ -3,6 +3,19 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.lo-success-message {
+    --mdc-snackbar-container-color: #D4EDDA !important;
+    --mdc-snackbar-supporting-text-color: #155724 !important;
+}
+.lo-error-message {
+    --mdc-snackbar-container-color: #F8D7DA !important;
+    --mdc-snackbar-supporting-text-color: #721C24 !important;
+}
+.lo-warning-message {
+    --mdc-snackbar-container-color: #FFF3CD !important;
+    --mdc-snackbar-supporting-text-color: #856404 !important;
+}
+
 .lo-center { margin: 0 auto; }
 .lo-txt-center { text-align: center; }
 .lo-txt-left { text-align: left; }

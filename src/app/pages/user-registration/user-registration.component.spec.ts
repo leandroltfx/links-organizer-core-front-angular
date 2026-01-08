@@ -4,14 +4,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of, throwError } from 'rxjs';
 import { UserGatewayService } from '../../core/api/endpoints/user/gateway/user-gateway.service';
 import { UserRegistrationComponent } from './user-registration.component';
+import { MessageService } from '../../core/services/message/message.service';
 
 describe('UserRegistrationComponent', () => {
   let component: UserRegistrationComponent;
   let fixture: ComponentFixture<UserRegistrationComponent>;
   let userGatewayService: jasmine.SpyObj<UserGatewayService>;
+  let messageServiceSpy: jasmine.SpyObj<MessageService>;
 
   beforeEach(async () => {
     const gatewaySpy = jasmine.createSpyObj('UserGatewayService', ['createUser']);
+    messageServiceSpy = jasmine.createSpyObj<MessageService>(['showMessage']);
 
     await TestBed.configureTestingModule({
       imports: [
@@ -21,7 +24,8 @@ describe('UserRegistrationComponent', () => {
         BrowserAnimationsModule,
       ],
       providers: [
-        { provide: UserGatewayService, useValue: gatewaySpy }
+        { provide: UserGatewayService, useValue: gatewaySpy },
+        { provide: MessageService, useValue: messageServiceSpy }
       ]
     }).compileComponents();
 
@@ -122,7 +126,7 @@ describe('UserRegistrationComponent', () => {
       expect(userGatewayService.createUser).not.toHaveBeenCalled();
     });
 
-    it('deve chamar o gateway quando o formulário for válido', () => {
+    it('deve chamar o gateway quando o formulário for válido e disparar uma mensagem de sucesso', () => {
       userGatewayService.createUser.and.returnValue(
         of({ accessToken: 'jwt-token' })
       );
@@ -141,12 +145,12 @@ describe('UserRegistrationComponent', () => {
         'teste@email.com',
         '12345678'
       );
+      expect(messageServiceSpy.showMessage).toHaveBeenCalledWith('Usuário cadastrado com sucesso!', 'success');
     });
 
-    it('deve tratar o erro quando o gateway retornar erro', () => {
+    it('deve tratar o erro quando o gateway retornar erro e disparar uma mensagem de erro', () => {
       const error = new Error('Erro ao registrar usuário');
 
-      spyOn(console, 'log');
       userGatewayService.createUser.and.returnValue(
         throwError(() => error)
       );
@@ -160,7 +164,7 @@ describe('UserRegistrationComponent', () => {
       component.registerUser();
 
       expect(userGatewayService.createUser).toHaveBeenCalled();
-      expect(console.log).toHaveBeenCalledWith(error);
+      expect(messageServiceSpy.showMessage).toHaveBeenCalledWith('Ocorreu um erro, tente novamente mais tarde.', 'error');
     });
 
   });
