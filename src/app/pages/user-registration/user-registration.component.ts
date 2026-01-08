@@ -5,7 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { UserGatewayService } from '../../shared/api/endpoints/user/gateway/user-gateway.service';
+import { UserGatewayService } from '../../core/api/endpoints/user/gateway/user-gateway.service';
 
 @Component({
   selector: 'lo-user-registration',
